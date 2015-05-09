@@ -1,0 +1,38 @@
+<head>
+<script type='text/javascript' src='knockout-3.3.0.js'></script>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+
+<body>
+    <h3>Tasks</h3>
+	<table>
+		<thead>
+			<th>Joueurs</th>
+			<th>1</th>
+			<th>2</th>
+			<th>3</th>
+			<th>4</th>
+			<th>5</th>
+			<th>6</th>
+			<th>7</th>
+			<th>8</th>
+			<th>9</th>
+			<th>10</th>
+			<th>Total</th>
+		</thead>	
+	    <tbody data-bind="foreach: { data: players, as: 'player' }">
+	        <tr data-bind="foreach: { data: scores, as: 'score' }">
+	        	<td data-bind="visible: player.firstName"></td>
+	        	<td data-bind="text: score.firstRoll"></td>
+	        	<td data-bind="text: score.secondRoll"></td>
+	        	<td data-bind="visible: score.thirdRoll > 0, text:score.thirdRoll"></td>
+	        	<td data-bind="text: score.roundPoints"></td>
+	        </tr> 
+	    </tbody>
+    </table>
+</body>
+
+<script type='text/javascript' src='ReservationsViewModel.js'></script>
+<script type="text/javascript">
+
+</script>
