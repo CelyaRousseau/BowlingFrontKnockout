@@ -24,15 +24,19 @@ define(['knockout','text!./scores.html', 'jquery', 'lodash'], function (ko,templ
         self.players = ko.observableArray([]);
         
         var url = "http://localhost:8081/BowlingUserService/users/game/1";
+      
 
-        $.getJSON(url, function(allData) {
-            var mappedPlayers = $.map(allData, function(item) {
-                return new Player(item);
+        var socket = io.connect('http://localhost:8082');
+        
+        socket.on('pushdata', function (data) {
+            console.log("receive pushdata ON !");
+            $.getJSON(url, function(allData) {
+                var mappedPlayers = $.map(allData, function(item) {
+                    return new Player(item);
+                });
+                self.players(mappedPlayers);
             });
-
-            self.players(mappedPlayers);
         });
-       
     };
 
     return { viewModel: ScoresViewModel, template: template };
